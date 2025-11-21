@@ -5,28 +5,29 @@ function App() {
   const learningSteps = [
     {
       number: "01",
+      title: "UI/UX Design",
+      description:
+        "Understanding design helps you communicate better with clients and build projects that users enjoy. This step improves your design thinking and makes your development work more complete. You'll learn Figma, prototyping, and how to plan user-friendly layouts.",
+    },
+    {
+      number: "02",
       title: "Web Foundation",
       description:
         "Your journey begins here, even if you have never touched code before. This step builds your base by teaching you the essential tools of the web. You'll learn how to structure pages, style layouts, and write simple JavaScript. By the end, you will understand the core logic every developer needs.",
     },
     {
-      number: "02",
+      number: "03",
       title: "Styling Mastery",
       description:
         "Once you understand the basics, it's time to make your websites look professional. This stage teaches you how to create clean designs, smooth animations, and modern layouts. You'll learn techniques that make your projects stand out visually and improve overall user experience.",
     },
     {
-      number: "03",
+      number: "04",
       title: "React Mastery",
       description:
         "In this stage, you move into real frontend development. React allows you to build fast, dynamic interfaces used by top companies. You'll create real applications, handle data from APIs, and organize your code like a professional developer. This is where your skills start to feel truly powerful.",
     },
-    {
-      number: "04",
-      title: "UI/UX Design",
-      description:
-        "Understanding design helps you communicate better with clients and build projects that users enjoy. This step improves your design thinking and makes your development work more complete. You'll learn Figma, prototyping, and how to plan user-friendly layouts.",
-    },
+
     {
       number: "05",
       title: "Internship / Portfolio",
