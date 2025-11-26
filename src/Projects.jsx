@@ -1,9 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { Code, ExternalLink } from "lucide-react";
-import {} from "react";
-import {} from "framer-motion";
-import Projects from "./Projects.jsx";
 
 const projects = [
   {
@@ -62,15 +57,6 @@ const projects = [
 const ProjectItem = ({ project, index }) => {
   const isOdd = index % 2 !== 0;
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: [0.25, 1, 0.5, 1] },
-    },
-  };
-
   return (
     <div className="relative md:grid md:grid-cols-2 md:gap-x-8 items-center">
       {/* Badge */}
@@ -79,69 +65,89 @@ const ProjectItem = ({ project, index }) => {
       </div>
 
       {/* Card */}
-      <motion.div
-        className={`ml-16 md:ml-0 ${
+      <div
+        className={`ml-16 md:ml-0 animate-fadeInUp ${
           isOdd ? "md:col-start-2" : "md:text-right"
         }`}
-        variants={cardVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
       >
         <div className="group relative h-72 rounded-xl overflow-hidden border border-gray-800 shadow-lg bg-gray-900">
-          {/* Background (Team Badge instead of image) */}
-          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 text-white text-4xl font-bold opacity-80 group-hover:opacity-40 transition-all duration-700">
+          {/* Background */}
+          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 text-white text-4xl font-bold opacity-80">
             {project.team}
           </div>
 
-          {/* Hover Overlay */}
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-[2px] flex flex-col justify-center items-center p-6 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            {/* Batch Tag */}
-            <span className="absolute top-4 right-4 text-xs font-bold bg-purple-600 text-white px-3 py-1 rounded-full shadow-lg transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-[2px] flex flex-col justify-center items-center p-6 text-center">
+            <span className="absolute top-4 right-4 text-xs font-bold bg-purple-600 text-white px-3 py-1 rounded-full shadow-lg">
               Batch {project.batch}
             </span>
 
-            {/* Title */}
-            <h3 className="text-2xl font-bold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">
+            <h3 className="text-2xl font-bold text-white mb-2">
               {project.title}
             </h3>
 
-            {/* Team */}
             <p className="text-sm text-gray-400 mb-2">
               <strong>Team:</strong> {project.team}
             </p>
 
-            {/* Description */}
-            <p className="text-gray-300 text-sm mb-6 max-w-md transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-150">
+            <p className="text-gray-300 text-sm mb-6 max-w-md">
               {project.description || "Description coming soon..."}
             </p>
 
-            {/* Buttons */}
-            <div className="flex items-center gap-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-200">
+            <div className="flex items-center gap-4">
               {project.code && (
                 <a
                   href={project.code}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel=""
                   className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white border border-gray-600 hover:bg-white/10 transition-colors"
                 >
-                  <Code className="w-4 h-4" /> View Code
+                  {/* Inline SVG for Code */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 18l6-6-6-6M8 6l-6 6 6 6"
+                    />
+                  </svg>
+                  View Code
                 </a>
               )}
               {project.demo && (
                 <a
                   href={project.demo}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel=""
                   className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold bg-gradient-to-r from-blue-500 to-purple-600 hover:shadow-lg hover:shadow-purple-500/30 transition-all"
                 >
-                  <ExternalLink className="w-4 h-4" /> Live Demo
+                  {/* Inline SVG for Link */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M14 3h7v7m0-7L10 14m-4 7h14a2 2 0 002-2V7"
+                    />
+                  </svg>
+                  Live Demo
                 </a>
               )}
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };
@@ -152,37 +158,25 @@ const OurProjects = () => {
       {/* Hero Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.h2
-            className="text-5xl md:text-6xl font-bold mb-6"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-400 mb-6 animate-fadeInDown">
             Our Projects
-          </motion.h2>
-          <motion.p
-            className="text-gray-400 text-lg"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          </h1>
+          <p
+            className="text-gray-400 text-lg animate-fadeIn"
+            style={{ animationDelay: "0.2s" }}
           >
             Explore real-world projects built by our students. Each project
             showcases the practical skills and creativity developed through our
             training programs.
-          </motion.p>
+          </p>
         </div>
       </section>
 
-      {/* Projects Timeline */}
+      {/*  Timeline */}
       <section className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="relative max-w-5xl mx-auto">
           {/* Vertical Line */}
-          <motion.div
-            className="absolute top-0 bottom-0 w-0.5 bg-gray-800 left-6 md:left-1/2 md:-translate-x-1/2"
-            initial={{ height: 0 }}
-            animate={{ height: "100%" }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          ></motion.div>
+          <div className="absolute top-0 bottom-0 w-0.5 bg-gray-800 left-6 md:left-1/2 md:-translate-x-1/2 animate-growLine"></div>
 
           <div className="space-y-20 md:space-y-16">
             {projects.map((project, index) => (
@@ -192,24 +186,19 @@ const OurProjects = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Info Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-3xl font-bold mb-4">
+          <h2 className="text-2xl text-gray-300 font-bold mb-4">
             Ready to Build Your Own Project?
-          </h3>
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+          </h2>
+          <p className="text-gray-00 mb-8 max-w-2xl mx-auto">
             Join our programs and create impressive projects that showcase your
             skills to potential employers.
           </p>
-          <motion.button
-            className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-200 transition-all"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
+          <button className="bg-white text-black px-8 py-4 rounded-lg font-semibold hover:bg-gray-200 transition-all animate-fadeIn">
             Get Started
-          </motion.button>
+          </button>
         </div>
       </section>
     </>
